@@ -23,8 +23,8 @@ const Main = () => {
     const userAmount = Number(amount);
     const calculatedInterest = Number(interest) / 100 / 12;
     const calculatedPayments = Number(years) * 12;
-    const n = Math.pow(1 + calculatedInterest, calculatedPayments).toFixed(2);
-    const monthly = (userAmount * n * calculatedInterest) / (n - 1).toFixed(2);
+    const n = Math.pow(1 + calculatedInterest, calculatedPayments);
+    const monthly = (userAmount * n * calculatedInterest) / (n - 1);
 
     return monthly.toFixed(2);
   };
@@ -36,9 +36,11 @@ const Main = () => {
         <label>
           Loan Amount:
           <input
-            type="text"
+            type="number"
             name="amount"
             placeholder="Enter Loan Amount"
+            min="0"
+            max="1000000000"
             value={userValue.amount}
             onChange={changeHandler}
           />
@@ -47,7 +49,7 @@ const Main = () => {
         <label>
           Years:
           <input
-            type="text"
+            type="number"
             name="years"
             placeholder="How Many Years is your Term?"
             value={userValue.years}
@@ -57,7 +59,7 @@ const Main = () => {
         <label>
           Interest Rate:
           <input
-            type="text"
+            type="number"
             name="interest"
             placeholder="Enter Interest Rate"
             value={userValue.interest}
